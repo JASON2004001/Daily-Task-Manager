@@ -17,19 +17,31 @@ export default function AuthView() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === 'admin') {
-      dispatch(authenticateAdmin({ name: formData.name, password: formData.password }));
+      dispatch(
+        authenticateAdmin({
+          name: formData.name.trim(),
+          password: formData.password.trim(),
+        })
+      );
     } else {
       const payload =
         mode === 'signup'
-          ? { name: formData.name, email: formData.email, password: formData.password }
-          : { email: formData.email, password: formData.password };
+          ? {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            password: formData.password,
+          }
+          : {
+            email: formData.email.trim(),
+            password: formData.password,
+          };
       dispatch(authenticateUser({ mode, payload }));
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-[#090d16]">
-      <div className="w-full max-w-md bg-[#111827] border border-[#1f2937] rounded-2xl p-8 shadow-2xl">
+      <div className="w-full max-w-md bg-[#111827] border border-[#1f2937] rounded-2xl p-6 sm:p-8 shadow-2xl">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-[#10b981] tracking-wide">
             Daily Task Manager
@@ -44,27 +56,24 @@ export default function AuthView() {
           <button
             type="button"
             onClick={() => switchMode('login')}
-            className={`py-2 rounded-lg transition cursor-pointer ${
-              mode === 'login' ? 'bg-[#10b981] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
-            }`}
+            className={`py-2 rounded-lg transition cursor-pointer ${mode === 'login' ? 'bg-[#10b981] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
+              }`}
           >
             Log In
           </button>
           <button
             type="button"
             onClick={() => switchMode('signup')}
-            className={`py-2 rounded-lg transition cursor-pointer ${
-              mode === 'signup' ? 'bg-[#10b981] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
-            }`}
+            className={`py-2 rounded-lg transition cursor-pointer ${mode === 'signup' ? 'bg-[#10b981] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
+              }`}
           >
             Sign Up
           </button>
           <button
             type="button"
             onClick={() => switchMode('admin')}
-            className={`py-2 rounded-lg transition cursor-pointer ${
-              mode === 'admin' ? 'bg-[#f59e0b] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
-            }`}
+            className={`py-2 rounded-lg transition cursor-pointer ${mode === 'admin' ? 'bg-[#f59e0b] text-black font-bold' : 'text-[#94a3b8] hover:text-white'
+              }`}
           >
             Admin
           </button>
@@ -85,7 +94,10 @@ export default function AuthView() {
               <input
                 type="text"
                 required
-                placeholder={mode === 'admin' ? 'User' : 'Enter your name'}
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck="false"
+                placeholder={mode === 'admin' ? 'Enter admin name' : 'Enter your name'}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090d16] border border-[#1f2937] text-sm text-white focus:outline-none focus:border-[#10b981]"
@@ -99,6 +111,8 @@ export default function AuthView() {
               <input
                 type="email"
                 required
+                autoCorrect="off"
+                autoCapitalize="none"
                 placeholder="you@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -122,19 +136,18 @@ export default function AuthView() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-xl font-bold text-sm transition cursor-pointer ${
-              mode === 'admin'
+            className={`w-full py-3 rounded-xl font-bold text-sm transition cursor-pointer ${mode === 'admin'
                 ? 'bg-[#f59e0b] hover:bg-[#d97706] text-black'
                 : 'bg-[#10b981] hover:bg-[#059669] text-black'
-            }`}
+              }`}
           >
             {loading
               ? 'Please wait...'
               : mode === 'admin'
-              ? 'Enter Admin Dashboard'
-              : mode === 'signup'
-              ? 'Create Account & Start'
-              : 'Log In to Tasks'}
+                ? 'Enter Admin Dashboard'
+                : mode === 'signup'
+                  ? 'Create Account & Start'
+                  : 'Log In to Tasks'}
           </button>
         </form>
       </div>
