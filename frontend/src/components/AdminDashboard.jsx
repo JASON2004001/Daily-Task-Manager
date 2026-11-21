@@ -141,30 +141,27 @@ export default function AdminDashboard() {
                                     >
                                       <div className="flex items-start gap-2 min-w-0 flex-1">
                                         <span
-                                          className={`mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold ${
-                                            task.isCompleted
+                                          className={`mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold ${task.isCompleted
                                               ? 'bg-[#10b981] text-black'
                                               : 'border border-[#475569] text-transparent'
-                                          }`}
+                                            }`}
                                         >
                                           ✓
                                         </span>
                                         <span
-                                          className={`break-words ${
-                                            task.isCompleted
+                                          className={`break-words ${task.isCompleted
                                               ? 'line-through text-[#64748b]'
                                               : 'text-[#f1f5f9]'
-                                          }`}
+                                            }`}
                                         >
                                           {task.text}
                                         </span>
                                       </div>
                                       <span
-                                        className={`shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded ${
-                                          task.isCompleted
+                                        className={`shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded ${task.isCompleted
                                             ? 'bg-[#10b981]/15 text-[#10b981]'
                                             : 'bg-[#f59e0b]/15 text-[#f59e0b]'
-                                        }`}
+                                          }`}
                                       >
                                         {task.isCompleted ? 'Done' : 'Pending'}
                                       </span>
@@ -198,9 +195,8 @@ export default function AdminDashboard() {
                             <React.Fragment key={u.id}>
                               <tr
                                 onClick={() => toggleUserRow(u.id)}
-                                className={`border-b border-[#1f2937]/50 cursor-pointer transition ${
-                                  isExpanded ? 'bg-[#090d16]' : 'hover:bg-[#090d16]/70'
-                                }`}
+                                className={`border-b border-[#1f2937]/50 cursor-pointer transition ${isExpanded ? 'bg-[#090d16]' : 'hover:bg-[#090d16]/70'
+                                  }`}
                               >
                                 <td className="py-3.5 px-2 font-semibold text-white">{u.name}</td>
                                 <td className="py-3.5 px-2 text-[#94a3b8]">{u.email}</td>
@@ -236,11 +232,10 @@ export default function AdminDashboard() {
                                             >
                                               <div className="flex items-center gap-2.5">
                                                 <span
-                                                  className={`w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold ${
-                                                    task.isCompleted
+                                                  className={`w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold ${task.isCompleted
                                                       ? 'bg-[#10b981] text-black'
                                                       : 'border border-[#475569] text-transparent'
-                                                  }`}
+                                                    }`}
                                                 >
                                                   ✓
                                                 </span>
@@ -256,11 +251,10 @@ export default function AdminDashboard() {
                                               </div>
 
                                               <span
-                                                className={`text-[10px] font-semibold px-2 py-0.5 rounded ${
-                                                  task.isCompleted
+                                                className={`text-[10px] font-semibold px-2 py-0.5 rounded ${task.isCompleted
                                                     ? 'bg-[#10b981]/15 text-[#10b981]'
                                                     : 'bg-[#f59e0b]/15 text-[#f59e0b]'
-                                                }`}
+                                                  }`}
                                               >
                                                 {task.isCompleted ? 'Completed' : 'Pending'}
                                               </span>
