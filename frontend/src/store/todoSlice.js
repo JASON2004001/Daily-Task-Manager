@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://daily-task-manager-1497.onrender.com/api';
 
 // 1. Fetch User Tasks
 export const fetchTodos = createAsyncThunk(
