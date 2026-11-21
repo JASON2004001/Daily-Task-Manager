@@ -70,7 +70,6 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // User Auth
       .addCase(authenticateUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -87,7 +86,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Admin Auth
       .addCase(authenticateAdmin.pending, (state) => {
         state.loading = true;
         state.error = null;
