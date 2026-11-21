@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: true, // Allows requests from both your deployed frontend and localhost
     credentials: true,
   })
 );
@@ -30,7 +30,12 @@ mongoose
     process.exit(1);
   });
 
-//Routes
+// Health Check Route
+app.get('/', (req, res) => {
+  res.send('Daily Task Manager API is live and running.');
+});
+
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/todos', todoRoutes);
 app.use('/api/admin', adminRoutes);
